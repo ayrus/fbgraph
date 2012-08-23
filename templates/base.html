@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+
+	<title> {% block title %} {% endblock %} </title>
+
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" />
+	<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic&amp;subset=cyrillic" rel="stylesheet" type="text/css" />
+
+	{% block extra_head %} {% endblock %}
+
+	</head>
+
+	<body>
+	
+	<div id="wrapper">
+	
+		<div id="header"></div>
+		
+		<div id="nav">
+			
+		</div>
+	
+	
+		{% block body %} {% endblock %}
+		
+		<br/><br/>
+		
+		<div id="footer">
+			wut
+		</div>
+	
+	</div>
+
+	</body>
+
+</html>
