@@ -4,7 +4,9 @@
  *
  * Source: https://github.com/jeyb/d3.punchcard
  *
- * More: http://jeybalachandran.com/posts/San-Francisco-Caltrain-Punchcard/ 
+ * More: http://jeybalachandran.com/posts/San-Francisco-Caltrain-Punchcard/
+ *
+ * Following has been modified.
  *
  *
  */

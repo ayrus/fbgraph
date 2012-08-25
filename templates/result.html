@@ -13,10 +13,20 @@
 
 {% block body %}
 
-	<div class="head">Your activity:</div>
+	<div class="head">
+		{% if sample %}
+			Sample Data:
+		{% else %}
+			Your Activity:
+		{% endif %}
+	</div>
 	<br/>
 	
 	The graph visualizes the day and hour when your activity is most frequent (in the data given). 
+	{% if sample %}
+		Data for this sample graph has been taken from a Facebook user's data.
+	{% endif %}
+	
 	<br/><br/>
 	Hover your mouse over a blob to see how many posts you've made that day/hour in total. 
 	
@@ -29,10 +39,10 @@
 		<span class="legend_data">{{ records }}</span>
 		
 		<span class="legend_head">Data Since: </span>
-		<span class="legend_data">{{ from_date }}</span>
+		<span class="legend_data">{{ from_date_plain }}</span>
 		
 		<span class="legend_head">Data Till: </span>
-		<span class="legend_data">{{ to_date }}</span>
+		<span class="legend_data">{{ to_date_plain }}</span>
 	</div>
 	
 	<script type="text/javascript">
@@ -40,13 +50,27 @@
 		var day_frequency =  {{ day_frequency }};
 	</script>
 	
-	<br/><br/>
+	<br/><br/><br/>
+	
+	A second component which shows the day(s) you're most active:
 
 	<div id="dayGraph"></div>
 	
-</div>
-
+	<br/><br/>
 	
 	<script src="{{ STATIC_URL }}js/d3_punchcard.js" type="text/javascript"></script>
+	
+	<center><a href="/">
+		{% if sample %}
+			Visualize my activity!
+		{% else %}
+			Try Again!
+		{% endif %}
+	</a></center><br/>
+	
+	
+	<div id="footer">
+		N.B.: The graphs above may not be perfectly accurate.
+	</div>
 {% endblock %}
 

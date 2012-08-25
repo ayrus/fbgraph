@@ -16,8 +16,7 @@ body{
 }
 
 .head{
-	font-variant: small-caps;
-	font-size: 24px;
+	font-size: 23px;
 }
 
 label {
@@ -26,11 +25,24 @@ label {
 	float: left;
 }
 
+.error{
+	width: 500px;
+	padding-left: 10px;
+	margin-bottom: 20px;
+	background-color: #E34242;
+        color: white;
+        font-size: 12px;
+	font-weight: bold;
+        margin: 0 0 3px;
+        padding: 4px 5px;
+}
+
 #legend{
 	font-size: 12px;
-	font-variant: small-caps;
-	width: 450px;
+	#font-variant: small-caps;
+	width: 600px;
 	margin: 0 auto;
+	text-align: center;
 }
 
 .legend_head{
@@ -38,8 +50,7 @@ label {
 }
 
 .legend_data{
-	
-	margin-right: 20px;
+	margin-right: 15px;
 }
 
 #requestForm{
