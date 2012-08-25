@@ -1,21 +1,95 @@
 body{
 	background: #fff;
-	color: #555152;
-	font-family: 'PT Sans', serif;
+	color: #085366;
+	font-size: 14px;
+	font-family: 'Nunito', sans-serif;
+	padding-top: 50px;
+}
+
+#wrapper{
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.field{
+	margin-bottom: 15px;
+}
+
+.head{
+	font-variant: small-caps;
 	font-size: 18px;
-	font-style: normal;
-	font-weight: 400;
-	text-shadow: none;
+}
+
+label {
+	font-variant: small-caps;
+	width: 50%;
+	float: left;
+}
+
+#legend{
+	font-size: 12px;
+	font-variant: small-caps;
+	width: 450px;
+	margin: 0 auto;
+}
+
+.legend_head{
+	color: #99173C;
+}
+
+.legend_data{
+	
+	margin-right: 20px;
+}
+
+#requestForm{
+	margin: 0 auto;
+	width: 550px;
+	color: #99173C;
+}
+
+#text{
+	width: 850px;
+	font-size: 16px;
+	margin: 0 auto;
+	text-align: justify;
+	margin-bottom: 80px;
+}
+
+a:link, a:visited{
+	color: #000;
 	text-decoration: none;
-	text-transform: none;
-	letter-spacing: 0.0em;
-	word-spacing: 0em;
-	line-height: 1.5em;
+}
+
+a:hover{
+	text-decoration: underline;
+}
+
+.title{
+	font-variant: small-caps;
+	font-size: 18px;
+	text-decoration: underline;
+	color: #99173C;
+}
+
+#fblike{
+	float: right;
 }
 
 #graph {
   	text-align: center; 
 	font-size: 14px;
+}
+
+#footer{
+	width: 500px;
+	margin: 0 auto;
+	text-align: center;
+	padding-bottom: 20px;
+	font-size: 12px;
+	color: #D4D4D4;
+	padding-top: 5px;
+	border-top: 1px dotted #99173C;
 }
 
 /* Tipsy tool-tip specific styles */

@@ -1,1 +1,97 @@
-elo!
+{% extends "base.html" %}
+
+{% block title %}
+	Facebook Activity Punchcard Graph
+{% endblock %}
+
+{% block extra_head %}
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+	<link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body %}
+
+	<div id="text">
+		Facebook activity graph visualizes your activity pattern on Facebook with a graph. You get to specify a time-range and frequency of activities to analyze and you'll get to see how much time you spend on facebook and especially when (hour/day of week) you do that the most.
+		
+		<br/><br/>
+		
+		The graph is inspired by GitHub's <a href="https://github.com/blog/1093-introducing-the-new-github-graphs" target="_blank">punchcard</a> visualization and is powered by Facebook's Graph API, Django, d3.js (using <a href="https://github.com/jeyb/d3.punchcard" target="_blank">jeyb</a>'s implementation) and some post <a href="https://github.com/ayrus/afterglow-cloud" target="_blank">GSoC 2012</a> boredom/inspiration. You can fork it or view the source <a href="https://github.com/ayrus/fbgraph" target="_blank">here</a>. Any post/likes/comments/<a href="https://developers.facebook.com/docs/reference/api/post/" target="_blank">interactions</a> you make on your profile is taken to be the metric for an 'activity' for now (I plan to add more eventually). 
+		
+		<br/><br/><br/>
+		
+		Use the form below to visualize your activity, if you're unsure about to what to fill in it's best to leave the default values. <br/><br/>
+			
+		<div id="fblike"><fb:like href="{{ FB_LIKE_LINK }}" send="true" width="350" show_faces="true" font="segoe ui"></fb:like></div><br/>
+		
+	</div>
+
+	<center>
+		<div class="title">Visualize my activity</div>
+		<br/>
+	</center>
+	
+	<form method="post" action="/" id="requestForm">
+	
+		{% csrf_token %}
+		
+		<div class="field">
+
+			<label>Activity Since:</label>
+			{{ form.from_date }}
+			{{ form.from_date.errors }}
+
+		</div>
+		
+		<div class="field">
+
+			<label>Activity Till:</label>
+			{{ form.to_date }}
+			{{ form.to_date.errors }}
+
+		</div>
+		
+		<div class="field">
+
+			<label>Activity Threshold:</label>
+			{{ form.limit }}
+			{{ form.limit.errors }}
+
+		</div>
+		
+		<div class="field">
+
+			<label>Your Timezone:</label>
+			{{ form.timezone }}
+			{{ form.timezone.errors }}
+
+		</div>
+		
+		<center>
+			<br/>
+			<input type="submit" value="Login with Facebook"/>
+			<br/>
+		</center>
+		
+	</form>
+	
+	
+	<script>
+	/*$(function() {
+		$( "#id_since" ).datepicker({
+			changeMonth: true,
+			changeYear: true,
+			dateFormat: "dd-mm-yy"
+		});
+	});*/
+	</script>
+	
+	<br/><br/>
+			
+	<div id="footer">
+		NB: This application requires the 'read_stream' permission for it to access your information from Facebook. None of your retrieved data is retained on the server.
+	</div>
+
+{% endblock %}
+

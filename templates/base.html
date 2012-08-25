@@ -1,13 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
 	<head>
 
 	<title> {% block title %} {% endblock %} </title>
-
+	
+	<link href='http://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'/>
+	
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" />
-	<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic&amp;subset=cyrillic" rel="stylesheet" type="text/css" />
 
 	{% block extra_head %} {% endblock %}
 
@@ -15,22 +19,20 @@
 
 	<body>
 	
+	<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=198399676958376";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+	
 	<div id="wrapper">
-	
-		<div id="header"></div>
-		
-		<div id="nav">
-			
-		</div>
-	
 	
 		{% block body %} {% endblock %}
 		
 		<br/><br/>
-		
-		<div id="footer">
-			wut
-		</div>
 	
 	</div>
 

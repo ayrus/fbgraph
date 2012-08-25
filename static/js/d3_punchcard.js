@@ -127,7 +127,7 @@ function render(data) {
       punchcard.
         data([data[i][j]]).
         append("circle").
-        style("fill", "#73626E").
+        style("fill", "#085366").
         attr("class", "circle").
         attr("title", function(d) { return d + " posts from you."; }).
         attr("r", function(d) { return d / max * 14; }).
