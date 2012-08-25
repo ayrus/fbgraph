@@ -49,37 +49,39 @@ def home(request):
 def callback(request):
     
     
-    consumer = oauth.Consumer(key=settings.FB_APPID, \
-                              secret=settings.FB_APPSECRET)
+    #consumer = oauth.Consumer(key=settings.FB_APPID, \
+                              #secret=settings.FB_APPSECRET)
     
-    client = oauth.Client(consumer)
+    #client = oauth.Client(consumer)
     
-    request_url = settings.FB_ACCESS_TOKEN_URL + '?client_id=%s&redirect_uri=%s&client_secret=%s&code=%s' % (settings.FB_APPID, settings.FB_CALLBACK, settings.FB_APPSECRET, request.GET.get('code')) 
+    #request_url = settings.FB_ACCESS_TOKEN_URL + '?client_id=%s&redirect_uri=%s&client_secret=%s&code=%s' % (settings.FB_APPID, settings.FB_CALLBACK, settings.FB_APPSECRET, request.GET.get('code')) 
     
-    response, content = client.request(request_url, 'GET')
+    #response, content = client.request(request_url, 'GET')
     
-    access_token = dict(urlparse.parse_qsl(content))['access_token']
+    #access_token = dict(urlparse.parse_qsl(content))['access_token']
     
-    if response.status is 200:
+    #if response.status is 200:
     
-    	request.session['fb_access_token'] = access_token
+    	#request.session['fb_access_token'] = access_token
 	
-	endpoint = settings.FB_RETRIEVE_ID_URL + '?access_token=%s' % access_token
+	#endpoint = settings.FB_RETRIEVE_ID_URL + '?access_token=%s' % access_token
 	
-	response, content = client.request(endpoint)
+	#response, content = client.request(endpoint)
 	
-	if response.status is 200:
+	#if response.status is 200:
 	    
-	    content = json.loads(content)
+	    #content = json.loads(content)
 	    
-	    request.session['id'] = content['id']
+	    #request.session['id'] = content['id']
 	    
-	    return redirect('/process')
-    else:
-	#do-smth
-	pass
+    return redirect('/process')
+    #else:
+	##do-smth
+	#pass
     
 def _retrieveContent(request, endpoint, client):
+    
+    print endpoint
 	    
     response, content = client.request(endpoint)    
         
@@ -115,7 +117,7 @@ def process(request):
     
     client = oauth.Client(consumer)    
     
-    endpoint = settings.FB_RETRIEVE_ID_URL + '/posts?until=%s&limit=1000&fields=created_time,story&access_token=%s' % (request.session['fbgraph_from_date'], request.session['fb_access_token'])
+    endpoint = settings.FB_RETRIEVE_ID_URL + '/posts?until=%s&limit=1000&fields=created_time&access_token=%s' % (request.session['fbgraph_from_date'], request.session['fb_access_token'])
     
     while flag:
 	
@@ -147,8 +149,6 @@ def process(request):
 	    flag = False
 	    
     day_frequency = [ (val / float(records)) for val in post_frequency.values()]
-    
-    print day_frequency
     
     return render_to_response('result.html', locals(),
 	                                      context_instance=RequestContext(request))

@@ -53,9 +53,11 @@ $(document).ready(function(){
         .data(donut(day_frequency));
     arcs.enter().append("svg:path")
         .attr("stroke", "white")
+	.attr("title", function(d, i) { return (day_frequency[i] * 100) + "%"; })
         .attr("stroke-width", 0.5)
         .attr("fill", function(d, i) {return color(i);})
         .attr("d", arc)
+	.attr("class", "arc")
         .each(function(d) {this._current = d});
     
     // DRAW SLICE LABELS
@@ -66,5 +68,10 @@ $(document).ready(function(){
         .attr("transform", function(d) {return "translate(" + arc.centroid(d) + ")"; })
         .attr("text-anchor", "middle")
         .text(function(d, i) { var res = (day_frequency[i] == 0.0) ? "" : labels[i]; return res;  });
+	
+$("#dayGraph .arc").tipsy({
+    fade: true,
+    gravity: $.fn.tipsy.autoNS
+  });   
    
 });
