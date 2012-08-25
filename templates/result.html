@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-	
+	Facebook Activity Graph
 {% endblock %}
 
 {% block extra_head %}
@@ -35,7 +35,12 @@
 	
 	<script type="text/javascript">
 		var time_matrix = {{ time_matrix }};
+		var day_frequency =  {{ day_frequency }};
 	</script>
+	
+	<br/><br/>
+
+	<div id="dayGraph"></div>
 	
 </div>
 

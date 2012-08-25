@@ -92,11 +92,9 @@ def _retrieveContent(request, endpoint, client):
     
     return content, endpoint
     
-def process(request):    
+def process(request):
     
-    #ADD GRAPH.
-    
-    #post_frequency = {0 : 0, 1 : 0, 2 : 0, 3 : 0, 4 : 0, 5 : 0, 6 : 0}
+    post_frequency = {0 : 0, 1 : 0, 2 : 0, 3 : 0, 4 : 0, 5 : 0, 6 : 0}
     
     to_date = request.session['fbgraph_to_date']
     
@@ -112,8 +110,6 @@ def process(request):
     
     flag = True
     
-    y = ""
-    
     consumer = oauth.Consumer(key=settings.FB_APPID, \
                               secret=settings.FB_APPSECRET)
     
@@ -126,8 +122,6 @@ def process(request):
 	content, endpoint = _retrieveContent(request, endpoint, client)
     
 	for data in content['data']:
-	    
-	    #y += data['created_time'][:-5] + "<br/>"
 	    
 	    date = datetime.strptime(data['created_time'][:-5], "%Y-%m-%dT%H:%M:%S") 
 	    
@@ -146,13 +140,15 @@ def process(request):
 	    
 	    records = records + 1
 	    
-	    ##post_frequency[day] = post_frequency[day] + 1
-	    
-	    ##<-day_frequency = post_frequency.values()
+	    post_frequency[day] = post_frequency[day] + 1
 	
 	if records >= records_threshold:
 	 
 	    flag = False
+	    
+    day_frequency = [ (val / float(records)) for val in post_frequency.values()]
+    
+    print day_frequency
     
     return render_to_response('result.html', locals(),
 	                                      context_instance=RequestContext(request))
