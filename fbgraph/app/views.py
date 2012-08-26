@@ -85,11 +85,13 @@ def callback(request):
     
     # Sanity check - If the user tries reaching the callback endpoint directly.
     if "code" not in request.GET and "error" not in request.GET:
-	return redirect('/')
+	return redirect('index')
     
     # User did not add the app. Add an error message and redirect.
     if "error" in request.GET:
-	return redirect('/?e=1')
+	response = redirect('index')
+	response['Location'] += "?e=1"
+	return response
     
     consumer = oauth.Consumer(key=settings.FB_APPID, \
                               secret=settings.FB_APPSECRET)
@@ -108,7 +110,9 @@ def callback(request):
     
     else:
 	# Couldnt't retrive the access token.
-	return redirect('/?e=3')
+	response = redirect('index')
+	response['Location'] += "?e=3"
+	return response
     
     # Check if 'read_stream' permission has been granted.
     endpoint = settings.FB_RETRIEVE_ID_URL + "/permissions?access_token=%s" % access_token
@@ -118,12 +122,14 @@ def callback(request):
     try:
 	if content['data'][0]['read_stream'] == 1:
 	    # Everything's good to go.
-	    return redirect('/process')
+	    return redirect('process')
 	    
 	
     except KeyError:
 	# No 'read_stream' persmission.
-	return redirect('/?e=2')
+	response = redirect('index')
+	response['Location'] += "?e=2"
+	return response
     
 def _retrieveContent(endpoint, client):
     '''
@@ -170,7 +176,7 @@ def process(request):
     # they've revoked access to the application from Facebook (internally).
     if "fbgraph_to_date" not in request.session or "fb_access_token" not in request.session:
 	
-	return redirect('/')
+	return redirect('index')
     
     # A dict to store the number of posts made each day of week. Keys are 
     # 0-indexed days of the week (i.e.: 0 - Monday; 6-Sunday). Values are the
@@ -212,7 +218,7 @@ def process(request):
 	
 	#Likely an oAuth exception. Re-try.
 	if "error" in content:
-	    return redirect('/')
+	    return redirect('index')
     
 	for data in content['data']:
 	    
