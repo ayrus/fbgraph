@@ -21,7 +21,7 @@ body{
 
 label {
 	font-variant: small-caps;
-	width: 50%;
+	width: 45%;
 	float: left;
 }
 
@@ -39,7 +39,6 @@ label {
 
 #legend{
 	font-size: 12px;
-	#font-variant: small-caps;
 	width: 600px;
 	margin: 0 auto;
 	text-align: center;
@@ -55,7 +54,7 @@ label {
 
 #requestForm{
 	margin: 0 auto;
-	width: 550px;
+	width: 600px;
 	color: #99173C;
 }
 
